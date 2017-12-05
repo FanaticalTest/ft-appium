@@ -96,6 +96,9 @@ public class MobUI {
 
     public boolean isVisibleElementBy(By by)
     {
-        return (driver.findElement(by).isDisplayed());
+        if (driver.findElements(by).size()>0)
+            return true;
+        else
+            return false;
     }
 }
