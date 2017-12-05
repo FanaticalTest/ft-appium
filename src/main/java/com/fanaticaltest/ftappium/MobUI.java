@@ -93,4 +93,20 @@ public class MobUI {
         return ("Swipe slider " + by + " to value " +value );
 
     }
+
+    public boolean isVisibleElementBy(By by)
+    {
+        if (driver.findElements(by).size()>0)
+            return true;
+        else
+            return false;
+    }
+
+    public String handleAlertMessage(By byAlert, By byOk)
+    {
+        if (isVisibleElementBy(byAlert))
+            return tapButtonBy(byOk,1,1000);
+        else
+            return ("Element " + byAlert + " is not visible");
+    }
 }

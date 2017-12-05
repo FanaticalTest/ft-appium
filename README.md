@@ -1,7 +1,7 @@
 # ft-appium
 
 ## Pre requirements
-- com.fanaticaltest:ft-config:0.1.0
+- com.fanaticaltest:ft-config:0.1.1
 - io.appium:java-client:3.4.1
 - org.hamcrest:hamcrest-core:1.3
 - Appium Desktop 1.6.5
@@ -52,6 +52,19 @@ mu.getScreenshot("./src/test/resources/");
 mu.getScreenshot("./src/test/resources/", "prefix-value");
 // without timestamp
 mu.getScreenshot("./src/test/resources/", "filename-value", true);
+```
+
+### Assert if an element is visible
+```
+MobUI mu = new MobUI(driver);
+Assert.assertTrue(mu.isVisibleElementBy(By.name("title-name")));
+```
+
+### Handle alert pop-up
+Often your app is poping notification and you want to handle them without failing your test.
+```
+MobUI mu = new MobUI(driver);
+mu.handleAlertMessage(By.name("Alert-Title"),By.name("OK"));
 ```
 
 ### Freeze test process
