@@ -93,4 +93,9 @@ public class MobUI {
         return ("Swipe slider " + by + " to value " +value );
 
     }
+
+    public boolean isVisibleElementBy(By by)
+    {
+        return (driver.findElement(by).isDisplayed());
+    }
 }

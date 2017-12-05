@@ -2,6 +2,7 @@ package com.fanaticaltest.ftappium;
 
 import com.fanaticaltest.ftconfig.Property;
 import io.appium.java_client.ios.IOSDriver;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -95,6 +96,20 @@ public class MobUITests {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        driver.quit();
+    }
+
+    @Test
+    public void checkIsElementVisible()throws MalformedURLException
+    {
+        URL urlAppiumServer = new URL(urlAppium);
+        driver = new IOSDriver(urlAppiumServer, setUpAppium(desiredCapabilities));
+
+        MobUI mu = new MobUI(driver);
+
+        mu.tapButtonBy(By.name("show alert"),1,tapDurationMillisecond);
+        Assert.assertTrue(mu.isVisibleElementBy(By.name("Cool title")));
 
         driver.quit();
     }
