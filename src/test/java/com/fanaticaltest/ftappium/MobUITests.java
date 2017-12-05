@@ -109,7 +109,8 @@ public class MobUITests {
         MobUI mu = new MobUI(driver);
 
         mu.tapButtonBy(By.name("show alert"),1,tapDurationMillisecond);
-        Assert.assertTrue(mu.isVisibleElementBy(By.name("Cool title")));
+        mu.handleAlertMessage(By.name("Cool title"),By.name("OK"));
+        mu.handleAlertMessage(By.name("Unknown alert for negative test"),By.name("OK"));
 
         driver.quit();
     }

@@ -60,6 +60,13 @@ MobUI mu = new MobUI(driver);
 Assert.assertTrue(mu.isVisibleElementBy(By.name("title-name")));
 ```
 
+### Handle alert pop-up
+Often your app is poping notification and you want to handle them without failing your test.
+```
+MobUI mu = new MobUI(driver);
+mu.handleAlertMessage(By.name("Alert-Title"),By.name("OK"));
+```
+
 ### Freeze test process
 Just for continence, but not recommended except for work around you could pause a test a some seconds.
 In this example we wait for 2 seconds. The L is to convert the value in Long.

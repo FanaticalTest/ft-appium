@@ -101,4 +101,12 @@ public class MobUI {
         else
             return false;
     }
+
+    public String handleAlertMessage(By byAlert, By byOk)
+    {
+        if (isVisibleElementBy(byAlert))
+            return tapButtonBy(byOk,1,1000);
+        else
+            return ("Element " + byAlert + " is not visible");
+    }
 }
