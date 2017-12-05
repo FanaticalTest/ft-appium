@@ -1,7 +1,7 @@
 # ft-appium
 
 ## Pre requirements
-- com.fanaticaltest:ft-config:0.1.0
+- com.fanaticaltest:ft-config:0.1.1
 - io.appium:java-client:3.4.1
 - org.hamcrest:hamcrest-core:1.3
 - Appium Desktop 1.6.5
