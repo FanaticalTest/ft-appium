@@ -4,7 +4,7 @@
 - com.fanaticaltest:ft-config:0.1.1
 - io.appium:java-client:3.4.1
 - org.hamcrest:hamcrest-core:1.3
-- Appium Desktop 1.6.5
+- Appium Desktop 1.7.1
 
 ## Run
 
@@ -73,4 +73,30 @@ In this example we wait for 2 seconds. The L is to convert the value in Long.
 ```
 MobUI mu = new MobUI(driver);
 mu.freezeProcess(2L);
+```
+
+## Device setup
+Actually we expose 2 way of using the devices:
+-iOS Simulator
+-Android Real Device
+
+### iOS Simulator
+```
+IOSDriver driver;
+IosSimulator iosSimulator = new IosSimulator(platformVersion,urlAppUnderTest,appiumVersion,urlAppium);
+iosSimulator.setNoReset(noReset);           //by default is set to true
+iosSimulator.setDeviceName(deviceName);     //by default the value is "iPhone Simulator"
+driver = iosSimulator.connect();            //connect
+iosSimulator.disconnect(driver);            //disconnect
+```
+
+### Android Real Device
+Note : This is not unit tested.
+```
+AndroidDriver driver;
+AndroidDriver androidRealDevice = new IosSimulator(platformVersion,deviceName, urlAppUnderTest,appiumVersion,urlAppium);
+androidRealDevice.setNoReset(noReset);              //by default is set to true
+androidRealDevice.setAutomationName(automationName) //by default the value is "UiAutomator2"
+driver = androidRealDevice.connect();               //connect
+androidRealDevice.disconnect(driver);               //disconnect
 ```
