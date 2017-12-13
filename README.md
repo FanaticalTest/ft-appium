@@ -5,6 +5,7 @@
 - io.appium:java-client:3.4.1
 - org.hamcrest:hamcrest-core:1.3
 - Appium Desktop 1.7.1
+- Plug a Mobile Android device for unit test and update the `application.properties` in the section `android.*` accordingly
 
 ## Run
 
@@ -14,6 +15,7 @@
 ```
 ./gradlew build
 ```
+Note : When you run for the first time the project with a Real device, it may fail due to allow the computer to connect to the device.
 
 ### Install in local repository
 ```
@@ -91,7 +93,6 @@ iosSimulator.disconnect(driver);            //disconnect
 ```
 
 ### Android Real Device
-Note : This is not unit tested.
 ```
 AndroidDriver driver;
 AndroidDriver androidRealDevice = new IosSimulator(platformVersion,deviceName, urlAppUnderTest,appiumVersion,urlAppium);
