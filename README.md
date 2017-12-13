@@ -4,7 +4,8 @@
 - com.fanaticaltest:ft-config:0.1.1
 - io.appium:java-client:3.4.1
 - org.hamcrest:hamcrest-core:1.3
-- Appium Desktop 1.6.5
+- Appium Desktop 1.7.1
+- Plug a Mobile Android device for unit test and update the `application.properties` in the section `android.*` accordingly
 
 ## Run
 
@@ -14,6 +15,7 @@
 ```
 ./gradlew build
 ```
+Note : When you run for the first time the project with a Real device, it may fail due to allow the computer to connect to the device.
 
 ### Install in local repository
 ```
@@ -73,4 +75,29 @@ In this example we wait for 2 seconds. The L is to convert the value in Long.
 ```
 MobUI mu = new MobUI(driver);
 mu.freezeProcess(2L);
+```
+
+## Device setup
+Actually we expose 2 way of using the devices:
+-iOS Simulator
+-Android Real Device
+
+### iOS Simulator
+```
+IOSDriver driver;
+IosSimulator iosSimulator = new IosSimulator(platformVersion,urlAppUnderTest,appiumVersion,urlAppium);
+iosSimulator.setNoReset(noReset);           //by default is set to true
+iosSimulator.setDeviceName(deviceName);     //by default the value is "iPhone Simulator"
+driver = iosSimulator.connect();            //connect
+iosSimulator.disconnect(driver);            //disconnect
+```
+
+### Android Real Device
+```
+AndroidDriver driver;
+AndroidDriver androidRealDevice = new IosSimulator(platformVersion,deviceName, urlAppUnderTest,appiumVersion,urlAppium);
+androidRealDevice.setNoReset(noReset);              //by default is set to true
+androidRealDevice.setAutomationName(automationName) //by default the value is "UiAutomator2"
+driver = androidRealDevice.connect();               //connect
+androidRealDevice.disconnect(driver);               //disconnect
 ```
