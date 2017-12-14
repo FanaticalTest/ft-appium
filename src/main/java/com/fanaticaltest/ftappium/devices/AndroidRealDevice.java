@@ -8,49 +8,31 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class AndroidRealDevice {
-
-    private String platformName;
-    private String platformVersion;
-    private String deviceName;
-    private String urlMobileApp;
-    private String automationName;
-    private boolean noReset;
-    private String appiumVersion;
-    private String appiumServerUrl;
-
-
-    public void setAutomationName(String automationName) {
-        this.automationName = automationName;
-    }
-
-    public void setNoReset(boolean noReset) {
-        this.noReset = noReset;
-    }
+public class AndroidRealDevice extends MobileDevice{
 
     public AndroidRealDevice(String platformVersion, String deviceName, String urlMobileApp, String appiumVersion, String appiumServerUrl) {
-        this.platformName ="Android";
-        this.platformVersion = platformVersion;
-        this.deviceName=deviceName;
-        this.urlMobileApp=urlMobileApp;
-        this.automationName="UiAutomator2";
-        this.noReset=true;
-        this.appiumVersion=appiumVersion;
-        this.appiumServerUrl=appiumServerUrl;
+        this.setPlatformName("Android");
+        this.setPlatformVersion(platformVersion);
+        this.setDeviceName(deviceName);
+        this.setUrlMobileApp(urlMobileApp);
+        this.setAutomationName("UiAutomator2");
+        this.setNoReset(true);
+        this.setAppiumVersion(appiumVersion);
+        this.setAppiumServerUrl(appiumServerUrl);
     }
 
     public AndroidDriver connect() throws MalformedURLException
     {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, this.platformName );
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, this.platformVersion);
-        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, this.deviceName);
-        desiredCapabilities.setCapability(MobileCapabilityType.APP, this.urlMobileApp);
-        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, this.automationName);
-        desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, this.noReset);
-        desiredCapabilities.setCapability("appiumVersion", this.appiumVersion);
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, this.getPlatformName());
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, this.getPlatformVersion());
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, this.getDeviceName());
+        desiredCapabilities.setCapability(MobileCapabilityType.APP, this.getUrlMobileApp());
+        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, this.getAutomationName());
+        desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, this.isNoReset());
+        desiredCapabilities.setCapability("appiumVersion", this.getAppiumVersion());
 
-        URL urlAppiumServer = new URL(this.appiumServerUrl);
+        URL urlAppiumServer = new URL(this.getAppiumServerUrl());
         return (new AndroidDriver(urlAppiumServer, desiredCapabilities));
     }
 

@@ -6,45 +6,29 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class IosSimulator {
-
-    private String platformName;
-    private String platformVersion;
-    private String deviceName;
-    private String urlMobileApp;
-    private boolean noReset;
-    private String appiumVersion;
-    private String appiumServerUrl;
-
-    public void setNoReset(boolean noReset) {
-        this.noReset = noReset;
-    }
-
-    public void setDeviceName(String deviceName) {
-        this.deviceName = deviceName;
-    }
+public class IosSimulator extends MobileDevice{
 
     public IosSimulator(String platformVersion, String urlMobileApp, String appiumVersion, String appiumServerUrl) {
-        this.platformName ="iOS";
-        this.platformVersion = platformVersion;
-        this.deviceName="iPhone Simulator";
-        this.urlMobileApp=urlMobileApp;
-        this.noReset=true;
-        this.appiumVersion=appiumVersion;
-        this.appiumServerUrl=appiumServerUrl;
+        this.setPlatformName("iOS");
+        this.setPlatformVersion(platformVersion);
+        this.setDeviceName("iPhone Simulator");
+        this.setUrlMobileApp(urlMobileApp);
+        this.setNoReset(true);
+        this.setAppiumVersion(appiumVersion);
+        this.setAppiumServerUrl(appiumServerUrl);
     }
 
     public IOSDriver connect() throws MalformedURLException
     {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, this.platformName);
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, this.platformVersion);
-        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, this.deviceName);
-        desiredCapabilities.setCapability(MobileCapabilityType.APP, this.urlMobileApp);
-        desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, this.noReset);
-        desiredCapabilities.setCapability("appiumVersion", this.appiumVersion);
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, this.getPlatformName());
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, this.getPlatformVersion());
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, this.getDeviceName());
+        desiredCapabilities.setCapability(MobileCapabilityType.APP, this.getUrlMobileApp());
+        desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, this.isNoReset());
+        desiredCapabilities.setCapability("appiumVersion", this.getAppiumVersion());
 
-        URL urlAppiumServer = new URL(this.appiumServerUrl);
+        URL urlAppiumServer = new URL(this.getAppiumServerUrl());
         return (new IOSDriver(urlAppiumServer, desiredCapabilities));
     }
 
