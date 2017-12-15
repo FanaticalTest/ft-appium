@@ -6,6 +6,7 @@
 - org.hamcrest:hamcrest-core:1.3
 - Appium Desktop 1.7.1
 - Plug a Mobile Android device for unit test and update the `application.properties` in the section `android.*` accordingly
+- Xcode 9.2 with iOS 10.3.1 Simulator for TestApp8.0.app.zip
 
 ## Run
 
@@ -101,3 +102,23 @@ androidRealDevice.setAutomationName(automationName) //by default the value is "U
 driver = androidRealDevice.connect();               //connect
 androidRealDevice.disconnect(driver);               //disconnect
 ```
+
+## XCode
+### Setup Emulator version on Xcode 9.2
+* Open Xcode
+* Select `Xcode` in the top menu
+* Select `Open developer Tool`
+* Select `Simulators`
+* Then the Simulator starts
+* Select `Hardware` in the top menu
+* Select `Devices`
+* Select `Manage Devices...`
+* Select `Simulators` in the middle top of the window
+* Click on `+` bottom left of the window corner
+* Select the drop-down `OS Version`
+* Click on `Download more simulator runtimes...`
+* Select the version you need.
+
+### Create a Simulator for the unit test
+We need a iPhone 7 using iOS 10.3.x So create a Simulator with the name `iPhone 7 iOS10.3 Simulator`
+

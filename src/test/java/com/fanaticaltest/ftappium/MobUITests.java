@@ -31,7 +31,7 @@ public class MobUITests {
     @Test
     public void checkGetScreenShot()throws MalformedURLException
     {
-        IosSimulator iosSimulator = new IosSimulator(iosSimPlatformVersion, iosSimUrlAppUnderTest,appiumVersion,urlAppium);
+        IosSimulator iosSimulator = new IosSimulator(iosSimPlatformVersion, iosSimDeviceName,iosSimUrlAppUnderTest,appiumVersion,urlAppium);
         iosSimulator.setNoReset(iosSimNoReset);
         iosSimulator.setDeviceName(iosSimDeviceName);
         driver = iosSimulator.connect();
@@ -51,7 +51,7 @@ public class MobUITests {
     @Test
     public void checkFillFieldBy()throws MalformedURLException
     {
-        IosSimulator iosSimulator = new IosSimulator(iosSimPlatformVersion, iosSimUrlAppUnderTest,appiumVersion,urlAppium);
+        IosSimulator iosSimulator = new IosSimulator(iosSimPlatformVersion, iosSimDeviceName,iosSimUrlAppUnderTest,appiumVersion,urlAppium);
         driver = iosSimulator.connect();
 
         MobUI mu = new MobUI(driver);
@@ -75,7 +75,7 @@ public class MobUITests {
     @Test
     public void checkSwipeSlideBy()throws MalformedURLException
     {
-        IosSimulator iosSimulator = new IosSimulator(iosSimPlatformVersion, iosSimUrlAppUnderTest,appiumVersion,urlAppium);
+        IosSimulator iosSimulator = new IosSimulator(iosSimPlatformVersion, iosSimDeviceName,iosSimUrlAppUnderTest,appiumVersion,urlAppium);
         driver = iosSimulator.connect();
 
         MobUI mu = new MobUI(driver);
@@ -94,7 +94,7 @@ public class MobUITests {
     @Test
     public void checkIsElementVisible()throws MalformedURLException
     {
-        IosSimulator iosSimulator = new IosSimulator(iosSimPlatformVersion, iosSimUrlAppUnderTest,appiumVersion,urlAppium);
+        IosSimulator iosSimulator = new IosSimulator(iosSimPlatformVersion, iosSimDeviceName,iosSimUrlAppUnderTest,appiumVersion,urlAppium);
         driver = iosSimulator.connect();
 
         MobUI mu = new MobUI(driver);
@@ -110,6 +110,7 @@ public class MobUITests {
     public void checkAndroidConfig()throws MalformedURLException
     {
         AndroidRealDevice androidRealDevice = new AndroidRealDevice(androidPlatformVersion,androidDeviceName,androidUrlAppUnderTest,appiumVersion,urlAppium);
+        androidRealDevice.setNoReset(androidNoReset);
         androidDriver = androidRealDevice.connect();
         androidRealDevice.disconnect(androidDriver);
     }
