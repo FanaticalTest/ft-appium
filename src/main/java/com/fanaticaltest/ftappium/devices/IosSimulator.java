@@ -8,10 +8,10 @@ import java.net.URL;
 
 public class IosSimulator extends MobileDevice{
 
-    public IosSimulator(String platformVersion, String urlMobileApp, String appiumVersion, String appiumServerUrl) {
+    public IosSimulator(String platformVersion, String deviceName, String urlMobileApp, String appiumVersion, String appiumServerUrl) {
         this.setPlatformName("iOS");
         this.setPlatformVersion(platformVersion);
-        this.setDeviceName("iPhone Simulator");
+        this.setDeviceName(deviceName);
         this.setUrlMobileApp(urlMobileApp);
         this.setNoReset(true);
         this.setAppiumVersion(appiumVersion);
