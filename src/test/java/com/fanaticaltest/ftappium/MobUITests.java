@@ -110,6 +110,7 @@ public class MobUITests {
     public void checkAndroidConfig()throws MalformedURLException
     {
         AndroidRealDevice androidRealDevice = new AndroidRealDevice(androidPlatformVersion,androidDeviceName,androidUrlAppUnderTest,appiumVersion,urlAppium);
+        androidRealDevice.setNoReset(androidNoReset);
         androidDriver = androidRealDevice.connect();
         androidRealDevice.disconnect(androidDriver);
     }

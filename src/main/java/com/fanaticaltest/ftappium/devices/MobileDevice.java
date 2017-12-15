@@ -1,7 +1,7 @@
 package com.fanaticaltest.ftappium.devices;
 
 
-public class MobileDevice {
+public abstract class MobileDevice {
 
     private String platformName;
     private String platformVersion;
