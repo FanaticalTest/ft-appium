@@ -2,11 +2,15 @@
 
 ## Pre requirements
 - com.fanaticaltest:ft-config:0.1.1
-- io.appium:java-client:3.4.1
+- io.appium:java-client:5.0.4
+- org.seleniumhq.selenium:selenium-java:3.6.0
 - org.hamcrest:hamcrest-core:1.3
 - Appium Desktop 1.7.1
 - Plug a Mobile Android device for unit test and update the `application.properties` in the section `android.*` accordingly
 - Xcode 9.2 with iOS 10.3.1 Simulator for TestApp8.0.app.zip
+
+### Java client reference
+- https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22io.appium%22%20AND%20a%3A%22java-client%22`
 
 ## Run
 
@@ -30,7 +34,7 @@ Mainly we use By to access an element. We could use id, xpath, name, etc. Here i
 ### Tap on a button or link
 ```
 MobUI mu = new MobUI(driver);
-mu.tapButtonBy(By.name("button.name"),numberOfFinger,tapDurationMillisecond);
+mu.tapButtonBy(By.name("button.name"));
 ```
 
 ### Swipe a slider
@@ -86,7 +90,7 @@ Actually we expose 2 way of using the devices:
 ### iOS Simulator
 ```
 IOSDriver driver;
-IosSimulator iosSimulator = new IosSimulator(platformVersion,urlAppUnderTest,appiumVersion,urlAppium);
+IosSimulator iosSimulator = new IosSimulator(platformVersion,deviceName,urlAppUnderTest,appiumVersion,urlAppium);
 iosSimulator.setNoReset(noReset);           //by default is set to true
 iosSimulator.setDeviceName(deviceName);     //by default the value is "iPhone Simulator"
 driver = iosSimulator.connect();            //connect

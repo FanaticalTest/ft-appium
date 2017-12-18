@@ -1,6 +1,8 @@
 package com.fanaticaltest.ftappium;
 
+import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -62,11 +64,22 @@ public class MobUI {
         return ("Fill field " + by + " with value " + value);
     }
 
+    @Deprecated
+    // Not anymore supported with Java client above 4.x
+    // fingers and durationInMillisecond are not anymore used
     public String tapButtonBy(By by, int fingers, int durationInMillisecond)
     {
         MobileElement selectedButton = (MobileElement) driver.findElement(by);
-        selectedButton.tap(fingers,durationInMillisecond);
+        //selectedButton.tap(fingers,durationInMillisecond);
+        new TouchAction((MobileDriver) driver).tap(selectedButton).perform();
         return ("Tap button "+by+" with "+fingers+" finger(s) with a duration "+durationInMillisecond+" millisecond.");
+    }
+
+    public String tapButtonBy(By by)
+    {
+        MobileElement selectedButton = (MobileElement) driver.findElement(by);
+        new TouchAction((MobileDriver) driver).tap(selectedButton).perform();
+        return ("Tap button "+by+".");
     }
 
     public String assertTextInElementBy(String value, By by)
@@ -105,7 +118,7 @@ public class MobUI {
     public String handleAlertMessage(By byAlert, By byOk)
     {
         if (isVisibleElementBy(byAlert))
-            return tapButtonBy(byOk,1,1000);
+            return tapButtonBy(byOk);
         else
             return ("Element " + byAlert + " is not visible");
     }

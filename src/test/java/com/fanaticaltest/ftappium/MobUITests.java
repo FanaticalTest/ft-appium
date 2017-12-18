@@ -12,7 +12,7 @@ import java.net.MalformedURLException;
 
 public class MobUITests {
 
-    private IOSDriver driver;
+    private IOSDriver iosDriver;
     private AndroidDriver androidDriver;
     private Property p = new Property("./src/main/resources/application.properties");
     private String urlAppium = p.read("appium.server_url");
@@ -26,7 +26,6 @@ public class MobUITests {
     private boolean androidNoReset = Boolean.parseBoolean(p.read("android.capability_no_reset"));
     private String appiumVersion = p.read("appium.version");
     private String screenshotPath = p.read("appium.screenshot_path");
-    private int tapDurationMillisecond = Integer.parseInt(p.read("user.tap_duration_millisecond"));
 
     @Test
     public void checkGetScreenShot()throws MalformedURLException
@@ -34,9 +33,9 @@ public class MobUITests {
         IosSimulator iosSimulator = new IosSimulator(iosSimPlatformVersion, iosSimDeviceName,iosSimUrlAppUnderTest,appiumVersion,urlAppium);
         iosSimulator.setNoReset(iosSimNoReset);
         iosSimulator.setDeviceName(iosSimDeviceName);
-        driver = iosSimulator.connect();
+        iosDriver = iosSimulator.connect();
 
-        MobUI mu = new MobUI(driver);
+        MobUI mu = new MobUI(iosDriver);
 
         try {
             mu.getScreenshot(screenshotPath);
@@ -45,20 +44,20 @@ public class MobUITests {
             e.printStackTrace();
         }
 
-        iosSimulator.disconnect(driver);
+        iosSimulator.disconnect(iosDriver);
     }
 
     @Test
     public void checkFillFieldBy()throws MalformedURLException
     {
         IosSimulator iosSimulator = new IosSimulator(iosSimPlatformVersion, iosSimDeviceName,iosSimUrlAppUnderTest,appiumVersion,urlAppium);
-        driver = iosSimulator.connect();
+        iosDriver = iosSimulator.connect();
 
-        MobUI mu = new MobUI(driver);
+        MobUI mu = new MobUI(iosDriver);
 
         mu.fillFieldBy("3", By.name("IntegerA"));
         mu.fillFieldBy("3", By.name("IntegerB"));
-        mu.tapButtonBy(By.name("ComputeSumButton"),1,tapDurationMillisecond);
+        mu.tapButtonBy(By.name("ComputeSumButton"));
         mu.assertTextInElementBy("6",By.name("Answer"));
 
         try {
@@ -69,16 +68,16 @@ public class MobUITests {
 
         mu.freezeProcess(2L);
 
-        iosSimulator.disconnect(driver);
+        iosSimulator.disconnect(iosDriver);
     }
 
     @Test
     public void checkSwipeSlideBy()throws MalformedURLException
     {
         IosSimulator iosSimulator = new IosSimulator(iosSimPlatformVersion, iosSimDeviceName,iosSimUrlAppUnderTest,appiumVersion,urlAppium);
-        driver = iosSimulator.connect();
+        iosDriver = iosSimulator.connect();
 
-        MobUI mu = new MobUI(driver);
+        MobUI mu = new MobUI(iosDriver);
 
         mu.swipeSliderBy(By.xpath("//XCUIElementTypeSlider[@name=\"AppElem\"]"), "0.2");
 
@@ -88,22 +87,22 @@ public class MobUITests {
             e.printStackTrace();
         }
 
-        iosSimulator.disconnect(driver);
+        iosSimulator.disconnect(iosDriver);
     }
 
     @Test
     public void checkIsElementVisible()throws MalformedURLException
     {
         IosSimulator iosSimulator = new IosSimulator(iosSimPlatformVersion, iosSimDeviceName,iosSimUrlAppUnderTest,appiumVersion,urlAppium);
-        driver = iosSimulator.connect();
+        iosDriver = iosSimulator.connect();
 
-        MobUI mu = new MobUI(driver);
+        MobUI mu = new MobUI(iosDriver);
 
-        mu.tapButtonBy(By.name("show alert"),1,tapDurationMillisecond);
+        mu.tapButtonBy(By.name("show alert"));
         mu.handleAlertMessage(By.name("Cool title"),By.name("OK"));
         mu.handleAlertMessage(By.name("Unknown alert for negative test"),By.name("OK"));
 
-        iosSimulator.disconnect(driver);
+        iosSimulator.disconnect(iosDriver);
     }
 
     @Test
