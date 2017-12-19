@@ -55,10 +55,10 @@ public class MobUITests {
 
         MobUI mu = new MobUI(iosDriver);
 
-        mu.fillFieldBy("3", By.name("IntegerA"));
+        mu.fillFieldByAccessibilityId("4", "IntegerA");
         mu.fillFieldBy("3", By.name("IntegerB"));
         mu.tapButtonBy(By.name("ComputeSumButton"));
-        mu.assertTextInElementBy("6",By.name("Answer"));
+        mu.assertTextInElementBy("7",By.name("Answer"));
 
         try {
             mu.getScreenshot(screenshotPath, "checkFillFieldBy");
@@ -99,8 +99,13 @@ public class MobUITests {
         MobUI mu = new MobUI(iosDriver);
 
         mu.tapButtonBy(By.name("show alert"));
-        mu.handleAlertMessage(By.name("Cool title"),By.name("OK"));
-        mu.handleAlertMessage(By.name("Unknown alert for negative test"),By.name("OK"));
+        mu.handleAlertMessageBy(By.name("Cool title"),By.name("OK"));
+        mu.handleAlertMessageBy(By.name("Unknown alert for negative test"),By.name("OK"));
+
+        mu.tapButtonByAccessibilityId("show alert");
+        mu.handleAlertMessageByAccessibilityId("this alert is so cool.","OK");
+        mu.handleAlertMessageByAccessibilityId("Unknown alert for negative test","OK");
+
 
         iosSimulator.disconnect(iosDriver);
     }
