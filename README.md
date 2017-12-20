@@ -10,7 +10,7 @@
 - Xcode 9.2 with iOS 10.3.1 Simulator for TestApp8.0.app.zip
 
 ### Java client reference
-- https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22io.appium%22%20AND%20a%3A%22java-client%22`
+- `https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22io.appium%22%20AND%20a%3A%22java-client%22`
 
 ## Run
 
@@ -46,7 +46,10 @@ mu.swipeSliderBy(By.name("swiper-name), value);
 ### Assert value in a field
 ```
 MobUI mu = new MobUI(driver);
-mu.assertTextInElementBy(valueToAsseert,By.name("field-name"));
+// Using By
+mu.assertTextInElementBy(valueToAssert,By.name("field-name"));
+// Using ByAccessibilityId
+
 ```
 
 ### Get screenshot
@@ -64,14 +67,20 @@ mu.getScreenshot("./src/test/resources/", "filename-value", true);
 ### Assert if an element is visible
 ```
 MobUI mu = new MobUI(driver);
+// Using By
 Assert.assertTrue(mu.isVisibleElementBy(By.name("title-name")));
+// Using ByAccessibilityId
+Assert.assertTrue(mu.isVisibleElementByAccessibilityId("title-name"));
 ```
 
 ### Handle alert pop-up
 Often your app is poping notification and you want to handle them without failing your test.
 ```
 MobUI mu = new MobUI(driver);
-mu.handleAlertMessage(By.name("Alert-Title"),By.name("OK"));
+// Using By
+mu.handleAlertMessageBy(By.name("Alert-Title"),By.name("OK"));
+// Using ByAccessibilityId
+mu.handleAlertMessageByAccessibilityId("this alert is so cool.","OK");
 ```
 
 ### Freeze test process

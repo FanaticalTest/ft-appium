@@ -13,6 +13,7 @@ public class IosSimulator extends MobileDevice{
         this.setPlatformVersion(platformVersion);
         this.setDeviceName(deviceName);
         this.setUrlMobileApp(urlMobileApp);
+        this.setAutomationName("XCUITest");
         this.setNoReset(true);
         this.setAppiumVersion(appiumVersion);
         this.setAppiumServerUrl(appiumServerUrl);
@@ -22,9 +23,11 @@ public class IosSimulator extends MobileDevice{
     {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, this.getPlatformName());
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, this.getPlatformName());
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, this.getPlatformVersion());
         desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, this.getDeviceName());
         desiredCapabilities.setCapability(MobileCapabilityType.APP, this.getUrlMobileApp());
+        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, this.getAutomationName());
         desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, this.isNoReset());
         desiredCapabilities.setCapability("appiumVersion", this.getAppiumVersion());
 
