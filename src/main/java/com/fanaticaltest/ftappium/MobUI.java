@@ -58,6 +58,7 @@ public class MobUI {
     public String fillFieldBy(String value, By by)
     {
         MobileElement selectedField = (MobileElement) driver.findElement(by);
+        selectedField.clear();
         selectedField.sendKeys(value);
         return ("Fill field " + by + " with value " + value);
     }
@@ -65,6 +66,7 @@ public class MobUI {
     public String fillFieldByAccessibilityId(String value, String elemName)
     {
         MobileElement selectedField = (MobileElement) driver.findElementByAccessibilityId(elemName);
+        selectedField.clear();
         selectedField.sendKeys(value);
         return ("Fill field " + elemName + " with value " + value);
     }
