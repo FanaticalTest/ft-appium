@@ -57,17 +57,17 @@ public class MobUI {
 
     public String fillFieldBy(String value, By by)
     {
-        MobileElement selectedField = (MobileElement) driver.findElement(by);
-        selectedField.clear();
-        selectedField.sendKeys(value);
+        MobileElement mobileElement = (MobileElement) driver.findElement(by);
+        mobileElement.clear();
+        mobileElement.sendKeys(value);
         return ("Fill field " + by + " with value " + value);
     }
 
     public String fillFieldByAccessibilityId(String value, String elemName)
     {
-        MobileElement selectedField = (MobileElement) driver.findElementByAccessibilityId(elemName);
-        selectedField.clear();
-        selectedField.sendKeys(value);
+        MobileElement mobileElement = (MobileElement) driver.findElementByAccessibilityId(elemName);
+        mobileElement.clear();
+        mobileElement.sendKeys(value);
         return ("Fill field " + elemName + " with value " + value);
     }
 
@@ -76,31 +76,38 @@ public class MobUI {
     // fingers and durationInMillisecond are not anymore used
     public String tapButtonBy(By by, int fingers, int durationInMillisecond)
     {
-        MobileElement selectedButton = (MobileElement) driver.findElement(by);
+        MobileElement mobileElement = (MobileElement) driver.findElement(by);
         //selectedButton.tap(fingers,durationInMillisecond);
-        new TouchAction(driver).tap(selectedButton).perform();
+        new TouchAction(driver).tap(mobileElement).perform();
         return ("Tap button "+by+" with "+fingers+" finger(s) with a duration "+durationInMillisecond+" millisecond.");
     }
 
     public String tapButtonBy(By by)
     {
-        MobileElement selectedButton = (MobileElement) driver.findElement(by);
-        selectedButton.click();
+        MobileElement mobileElement = (MobileElement) driver.findElement(by);
+        mobileElement.click();
         return ("Tap button "+by+".");
     }
 
     public String tapButtonByAccessibilityId(String elem)
     {
-        MobileElement selectedButton = (MobileElement) driver.findElementByAccessibilityId(elem);
-        selectedButton.click();
+        MobileElement mobileElement = (MobileElement) driver.findElementByAccessibilityId(elem);
+        mobileElement.click();
         return ("Tap button "+elem+".");
     }
 
     public String assertTextInElementBy(String value, By by)
     {
-        MobileElement resultField = (MobileElement) driver.findElement(by);
-        assertThat(resultField.getText(), containsString(value));
+        MobileElement mobileElement = (MobileElement) driver.findElement(by);
+        assertThat(mobileElement.getText(), containsString(value));
         return ("Assert text in the element "+by+" with value " + value);
+    }
+
+    public String assertTextInElementByAccessibilityId(String value, String elem)
+    {
+        MobileElement mobileElement = (MobileElement) driver.findElementByAccessibilityId(elem);
+        assertThat(mobileElement.getText(), containsString(value));
+        return ("Assert text in the element "+elem+" with value " + value);
     }
 
     public String freezeProcess(long timeInSecond)
@@ -115,8 +122,8 @@ public class MobUI {
 
     public String swipeSliderBy(By by, String value)
     {
-        MobileElement selectedSlider = (MobileElement) driver.findElement(by);
-        selectedSlider.sendKeys(value);
+        MobileElement mobileElement = (MobileElement) driver.findElement(by);
+        mobileElement.sendKeys(value);
         return ("Swipe slider " + by + " to value " +value );
 
     }
