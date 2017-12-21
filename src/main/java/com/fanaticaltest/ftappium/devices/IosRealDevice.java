@@ -1,20 +1,24 @@
 package com.fanaticaltest.ftappium.devices;
 
+
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class IosSimulator extends MobileDevice{
+public class IosRealDevice extends MobileDevice{
 
-    public IosSimulator(String platformVersion, String deviceName, String urlMobileApp, String appiumVersion, String appiumServerUrl) {
+    public IosRealDevice(String platformVersion, String deviceName, String urlMobileApp, String xcodeOrgId, String xcodeSigningId, String udid, String appiumVersion, String appiumServerUrl) {
         this.setPlatformName("iOS");
         this.setPlatformVersion(platformVersion);
         this.setDeviceName(deviceName);
         this.setUrlMobileApp(urlMobileApp);
-        this.setAutomationName("XCUITest");
-        this.setNoReset(true);
+        this.setNoReset(false);
+        this.setXcodeOrgId(xcodeOrgId);
+        this.setXcodeSigningId(xcodeSigningId);
+        this.setUdid(udid);
         this.setAppiumVersion(appiumVersion);
         this.setAppiumServerUrl(appiumServerUrl);
     }
@@ -26,8 +30,10 @@ public class IosSimulator extends MobileDevice{
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, this.getPlatformVersion());
         desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, this.getDeviceName());
         desiredCapabilities.setCapability(MobileCapabilityType.APP, this.getUrlMobileApp());
-        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, this.getAutomationName());
         desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET, this.isNoReset());
+        desiredCapabilities.setCapability("xcodeOrgId", this.getXcodeOrgId());
+        desiredCapabilities.setCapability("xcodeSigningId", this.getXcodeSigningId());
+        desiredCapabilities.setCapability(MobileCapabilityType.UDID, this.getUdid());
         desiredCapabilities.setCapability("appiumVersion", this.getAppiumVersion());
 
         URL urlAppiumServer = new URL(this.getAppiumServerUrl());

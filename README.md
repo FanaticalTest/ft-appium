@@ -8,6 +8,10 @@
 - Appium Desktop 1.7.1
 - Plug a Mobile Android device for unit test and update the `application.properties` in the section `android.*` accordingly
 - Xcode 9.2 with iOS 10.3.1 Simulator for TestApp8.0.app.zip
+- Need a real Android and real iPhone to run Unit Test.
+
+## Know limitation
+Actually running test on Simulator and real device on the same server will not work.
 
 ### Java client reference
 - `https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22io.appium%22%20AND%20a%3A%22java-client%22`
@@ -114,6 +118,14 @@ androidRealDevice.setNoReset(noReset);              //by default is set to true
 androidRealDevice.setAutomationName(automationName) //by default the value is "UiAutomator2"
 driver = androidRealDevice.connect();               //connect
 androidRealDevice.disconnect(driver);               //disconnect
+```
+
+### iPhone Real Device
+By default NoReset is set to false
+```
+osRealDevice iosRealDevice = new IosRealDevice(iosPlatformVersion,realDeviceName,iosUrlAppUnderTest, xcodeOrgId,xcodeSigningId, udid,appiumVersion,urlAppium);
+iosRealDriver = iosRealDevice.connect();
+iosRealDevice.disconnect(iosRealDriver);
 ```
 
 ## XCode
