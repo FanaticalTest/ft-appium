@@ -11,6 +11,10 @@ public abstract class MobileDevice {
     private String appiumVersion;
     private String appiumServerUrl;
     private String automationName;
+    private String xcodeOrgId;
+    private String xcodeSigningId;
+    private String udid;
+
 
     //Setter
     public void setPlatformName(String platformName) {
@@ -45,6 +49,18 @@ public abstract class MobileDevice {
         this.automationName = automationName;
     }
 
+    public void setXcodeOrgId(String xcodeOrgId) {
+        this.xcodeOrgId = xcodeOrgId;
+    }
+
+    public void setXcodeSigningId(String xcodeSigningId) {
+        this.xcodeSigningId = xcodeSigningId;
+    }
+
+    public void setUdid(String udid) {
+        this.udid = udid;
+    }
+
     //Getter
     public String getPlatformName() {
         return platformName;
@@ -76,6 +92,18 @@ public abstract class MobileDevice {
 
     public String getAutomationName() {
         return automationName;
+    }
+
+    public String getXcodeOrgId() {
+        return xcodeOrgId;
+    }
+
+    public String getXcodeSigningId() {
+        return xcodeSigningId;
+    }
+
+    public String getUdid() {
+        return udid;
     }
 
     //Constructor
