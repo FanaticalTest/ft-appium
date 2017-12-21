@@ -65,6 +65,7 @@ public class MobUITests {
         MobUI mu = new MobUI(iosSimDriver);
 
         mu.fillFieldByAccessibilityId("4", "IntegerA");
+        mu.assertTextInElementByAccessibilityId("4", "IntegerA");
         mu.fillFieldBy("3", By.name("IntegerB"));
         mu.tapButtonBy(By.name("ComputeSumButton"));
         mu.assertTextInElementBy("7",By.name("Answer"));
@@ -111,6 +112,7 @@ public class MobUITests {
         mu.handleAlertMessageBy(By.name("Cool title"),By.name("OK"));
         mu.handleAlertMessageBy(By.name("Unknown alert for negative test"),By.name("OK"));
 
+        mu.assertTextInElementByAccessibilityId("show alert","show alert");
         mu.tapButtonByAccessibilityId("show alert");
         mu.handleAlertMessageByAccessibilityId("this alert is so cool.","OK");
         mu.handleAlertMessageByAccessibilityId("Unknown alert for negative test","OK");
@@ -120,23 +122,23 @@ public class MobUITests {
     }
 
     // You need to connect a real device
-    @Test
+    /*@Test
     public void checkAndroidConfig()throws MalformedURLException
     {
         AndroidRealDevice androidRealDevice = new AndroidRealDevice(androidPlatformVersion,androidDeviceName,androidUrlAppUnderTest,appiumVersion,urlAppium);
         androidRealDevice.setNoReset(androidNoReset);
         androidDriver = androidRealDevice.connect();
         androidRealDevice.disconnect(androidDriver);
-    }
+    }*/
 
     // You need to connect a real device and setup the licences.properties (licences-sample.properties)
-    @Test
+    /*@Test
     public void checkIosConfig()throws MalformedURLException
     {
         IosRealDevice iosRealDevice = new IosRealDevice(iosPlatformVersion,realDeviceName,iosUrlAppUnderTest, xcodeOrgId,xcodeSigningId, udid,appiumVersion,urlAppium);
         iosRealDriver = iosRealDevice.connect();
         iosRealDevice.disconnect(iosRealDriver);
-    }
+    }*/
 
 
 }

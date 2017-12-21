@@ -53,7 +53,7 @@ MobUI mu = new MobUI(driver);
 // Using By
 mu.assertTextInElementBy(valueToAssert,By.name("field-name"));
 // Using ByAccessibilityId
-
+mu.assertTextInElementByAccessibilityId(valueToAssert,By.name("field-name"));
 ```
 
 ### Get screenshot
