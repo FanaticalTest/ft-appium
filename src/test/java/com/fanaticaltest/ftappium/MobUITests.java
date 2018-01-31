@@ -35,8 +35,10 @@ public class MobUITests {
     private String udid = lic.read("lic.udid");
     private String iosUrlAppUnderTest = p.read("ios.app_under_test_url");
     private String iosPlatformVersion = p.read("ios.platform_version");
+    private final By GENERAL_LINK = By.xpath(p.read("androidConfigApp.General"));
+    private final By ENABLE_SOCIAL_REC = By.id(p.read("androidConfigApp.EnableSocialRec.Switch"));
 
-    @Test
+    /*@Test
     public void checkGetScreenShot()throws MalformedURLException
     {
         IosSimulator iosSimulator = new IosSimulator(iosSimPlatformVersion, iosSimDeviceName,iosSimUrlAppUnderTest,appiumVersion,urlAppium);
@@ -119,17 +121,24 @@ public class MobUITests {
 
 
         iosSimulator.disconnect(iosSimDriver);
-    }
+    }*/
 
     // You need to connect a real device
-    /*@Test
+    @Test
     public void checkAndroidConfig()throws MalformedURLException
     {
         AndroidRealDevice androidRealDevice = new AndroidRealDevice(androidPlatformVersion,androidDeviceName,androidUrlAppUnderTest,appiumVersion,urlAppium);
         androidRealDevice.setNoReset(androidNoReset);
         androidDriver = androidRealDevice.connect();
+
+        MobUI mu = new MobUI(androidDriver);
+        mu.tapButtonBy(GENERAL_LINK);
+        mu.tapOnOffSwitch(ENABLE_SOCIAL_REC);
+
         androidRealDevice.disconnect(androidDriver);
-    }*/
+    }
+
+
 
     // You need to connect a real device and setup the licences.properties (licences-sample.properties)
     /*@Test

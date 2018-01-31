@@ -12,7 +12,10 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
+
 
 public class MobUI {
 
@@ -167,5 +170,15 @@ public class MobUI {
             return tapButtonByAccessibilityId(elemOk);
         else
             return ("Element " + elemAlert + " is not visible");
+    }
+
+    public String tapOnOffSwitch(By by)
+    {
+        MobileElement mobileElement = (MobileElement) driver.findElement(by);
+        String initialValue = mobileElement.getText();
+        mobileElement.click();
+        String finalValue = mobileElement.getText();
+        assertThat(initialValue,is(not(finalValue)));
+        return ("Tap On/Off switch " + by + " - initial value was : " + initialValue + " - final value is : " + finalValue);
     }
 }
